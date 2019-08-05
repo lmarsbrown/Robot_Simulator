@@ -1,6 +1,8 @@
 package Main;
 
+import Robot.Robot;
 import Utils.Interval;
+import Utils.console;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -10,10 +12,12 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-import static java.lang.Thread.sleep;
-
 public class Main extends Canvas{
+    //Creates the robot object
+    Robot robot = new Robot();
     int i = 0;
+
+
     static int canvasSize = 800;
     //Creates BufferedImage object
     BufferedImage bf = new BufferedImage(canvasSize,canvasSize,BufferedImage.TYPE_INT_RGB);
@@ -58,7 +62,7 @@ public class Main extends Canvas{
 
     public void draw(Graphics ctx)
     {
-        double rote = Math.toRadians(i);
+        double rote = robot.r;
 
 
         //Gets graphics2d object
@@ -85,7 +89,7 @@ public class Main extends Canvas{
 
 
         //rotating and draeing the robot
-        trans.translate(0+((0.70710678118*centDist)-(Math.cos(rote+Math.PI*0.25)*centDist)),0+((0.70710678118*centDist)-(Math.sin(rote+Math.PI*0.25)*centDist)));
+        trans.translate(robot.getXPix(canvasSize)-(0.5*imgSize)+((0.70710678118*centDist)-(Math.cos(rote+Math.PI*0.25)*centDist)),robot.getYPix(canvasSize)-(0.5*imgSize)+((0.70710678118*centDist)-(Math.sin(rote+Math.PI*0.25)*centDist)));
         trans.scale(xScale,yScale);
         trans.rotate(rote);
 

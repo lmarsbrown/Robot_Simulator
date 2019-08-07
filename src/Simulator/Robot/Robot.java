@@ -10,9 +10,9 @@ public class Robot{
     public int fSize = 3658;
     public double x  = fSize*0.5;
     public double y  = fSize*0.5;
-    public double motorPowerFL = 1;
+    public double motorPowerFL = 0;
     public double motorPowerFR = 0;
-    public double motorPowerBL = 1;
+    public double motorPowerBL = 0;
     public double motorPowerBR = 0;
     public double speed;
     public Robot(Double robotSpeed)

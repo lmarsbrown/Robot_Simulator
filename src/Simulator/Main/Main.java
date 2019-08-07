@@ -2,6 +2,7 @@ package Simulator.Main;
 
 import Simulator.Robot.Robot;
 import Simulator.Utils.*;
+import TeamCode.MainOpMode;
 
 
 import javax.imageio.ImageIO;
@@ -52,6 +53,10 @@ public class Main extends Canvas{
         //Loops drawing for animation
         Interval drawInt = new Interval((input)->{ctx.repaint();},10);
         drawInt.start();
+
+        //Starts OpMode
+        MainOpMode opmode = new MainOpMode();
+        opmode.run();
     }
     public void paint(Graphics g)
     {

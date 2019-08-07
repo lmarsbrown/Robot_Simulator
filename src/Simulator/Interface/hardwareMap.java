@@ -1,7 +1,7 @@
 package Simulator.Interface;
 
 public class hardwareMap {
-    public DcMotor get(Object object, String name)
+    public static DcMotor get(Object object, String name)
     {
         switch (name){
             case("front_left"):

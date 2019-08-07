@@ -36,19 +36,19 @@ public class Interface {
     {
         switch (motor.motor) {
             case ("front_left"): {
-                Main.robot.motorPowerFL = power;
-                break;
-            }
-            case ("back_left"): {
-                Main.robot.motorPowerBL = power;
-                break;
-            }
-            case ("front_right"): {
                 Main.robot.motorPowerFR = power;
                 break;
             }
-            case ("back_right"): {
+            case ("back_left"): {
                 Main.robot.motorPowerBR = power;
+                break;
+            }
+            case ("front_right"): {
+                Main.robot.motorPowerFL = power;
+                break;
+            }
+            case ("back_right"): {
+                Main.robot.motorPowerBL = power;
                 break;
             }
         }

@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class Main extends Canvas{
     //Creates the robot object
-    Robot robot = new Robot();
+    Robot robot = new Robot(1.0);
     int i = 0;
 
 
@@ -88,7 +88,7 @@ public class Main extends Canvas{
         double centDist = Math.sqrt(2*Math.pow(imgSize,2))*0.5;
 
 
-        //rotating and draeing the robot
+        //Rotating and drawing the robot
         trans.translate(robot.getXPix(canvasSize)-(0.5*imgSize)+((0.70710678118*centDist)-(Math.cos(rote+Math.PI*0.25)*centDist)),robot.getYPix(canvasSize)-(0.5*imgSize)+((0.70710678118*centDist)-(Math.sin(rote+Math.PI*0.25)*centDist)));
         trans.scale(xScale,yScale);
         trans.rotate(rote);

@@ -19,7 +19,7 @@ public class Robot{
     {
         speed = robotSpeed;
         //Looping the position calculating function on a new thread
-        Interval interval = new Interval((Object object)->{calcPos();},15);
+        Interval interval = new Interval((Object object)->{calcPos();return 0;},15);
         interval.start();
     }
     public double getXPix(double screenSize)

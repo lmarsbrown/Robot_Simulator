@@ -1,5 +1,5 @@
 package Simulator.Utils;
 
 public interface Lambda {
-    void call(Object input);
+    int call(Object input);
 }

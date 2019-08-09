@@ -1,8 +1,9 @@
 package Simulator.Interface;
 
 import Simulator.Main.Main;
+import Simulator.Utils.*;
 
-import java.util.List;
+import java.awt.*;
 
 public class Interface {
     private static DcMotor lF;
@@ -13,6 +14,7 @@ public class Interface {
 
     protected static void addMotor(DcMotor motor)
     {
+        //Creates cars for each motor incase needed later
         switch (motor.motor) {
             case ("front_left"): {
                 lF = motor;
@@ -34,6 +36,7 @@ public class Interface {
     }
     protected static void setPower(double power,DcMotor motor)
     {
+        //Sets motor powers
         switch (motor.motor) {
             case ("front_left"): {
                 Main.robot.motorPowerFR = power;
@@ -52,5 +55,14 @@ public class Interface {
                 break;
             }
         }
+    }
+    public static Vector3 getRobotPos()
+    {
+        return new Vector3(Main.robot.x,Main.robot.y,Main.robot.r);
+    }
+    public static Vector2 getMouse()
+    {
+        Point pos = Main.frame.getMousePosition();
+        return new Vector2(pos.x,pos.y);
     }
 }

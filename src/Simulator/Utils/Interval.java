@@ -14,9 +14,13 @@ public class Interval extends Thread{
     public void run()
     {
         console.log("Thread " + Thread.currentThread().getId() + " is running");
+        //Loop lambda while running
         while(running)
         {
-            func.call(null);
+            if(func.call(null)!=0)
+            {
+                this.clear();
+            }
             try {
                 Thread.sleep(wait);
             } catch (InterruptedException e) {

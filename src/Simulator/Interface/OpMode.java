@@ -7,7 +7,7 @@ public class OpMode {
     {
         init();
         start();
-        Interval loop = new Interval((Object)->{loop();},12);
+        Interval loop = new Interval((Object)->{loop();return 0;},12);
     }
     public void init()
     {

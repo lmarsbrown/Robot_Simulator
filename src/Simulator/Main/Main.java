@@ -17,7 +17,7 @@ public class Main extends Canvas{
     //Creates the robot object
     public static Robot robot = new Robot(1.0);
     int i = 0;
-
+    public static JFrame frame;
 
     static int canvasSize = 800;
     //Creates BufferedImage object
@@ -39,7 +39,7 @@ public class Main extends Canvas{
 
 
         //Creates and sets up JFrame and JPanel
-        JFrame frame = new JFrame();
+        frame = new JFrame();
         JPanel panel = new JPanel();
         panel.add(ctx);
         panel.setDoubleBuffered(true);
@@ -51,7 +51,7 @@ public class Main extends Canvas{
 
 
         //Loops drawing for animation
-        Interval drawInt = new Interval((input)->{ctx.repaint();},10);
+        Interval drawInt = new Interval((input)->{ctx.repaint();return 0;},10);
         drawInt.start();
 
         //Starts OpMode

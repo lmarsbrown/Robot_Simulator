@@ -8,8 +8,8 @@ public class Robot{
     //Initializing all of the robot variables
     public double r  = 0;
     public int fSize = 3658;
-    public double x  = fSize*0.5;
-    public double y  = fSize*0.5;
+    public double x  = fSize*0;
+    public double y  = fSize*0;
     public double motorPowerFL = 0;
     public double motorPowerFR = 0;
     public double motorPowerBL = 0;

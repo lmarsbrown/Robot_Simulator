@@ -27,9 +27,11 @@ public class MainOpMode extends OpMode{
     @Override
     public void start()
     {
-        goTo(new Vector2(860,860),5);
+        goTo(new Vector2(3658,3658),0.7,5);
     }
-    public void goTo( Vector2 goal,int slop)
+
+
+    public Interval goTo( Vector2 goal,double speed, int slop)
     {
 
         Vector3 rPosO = getRobotPos();
@@ -48,8 +50,7 @@ public class MainOpMode extends OpMode{
             goalN.y = goal.y- rPos.y;
             //Getting dist between robot and goal
             double dist = goalN.getLength();
-            //Normalizing to turn into valid vector(Good practice)
-            goalN.normalize();
+
 
             if(dist<slop)
             {
@@ -62,18 +63,36 @@ public class MainOpMode extends OpMode{
             }
             else
             {
+                //Calculates turn speed
+                double turnAmount = -Math.atan2(goalN.y,goalN.x);
+                double transR = (Math.abs(rPos.r-Math.PI)%(Math.PI*2))-Math.PI;
+                double turnDelta = ((transR-turnAmount)%Math.PI);
+                double turnSpeed = (turnDelta/(Math.PI*2));
+                //Applies smoothing function to turnSpeed
+                turnSpeed = (5/(Math.pow(-0.835*(1-turnSpeed),8)+1)-4)*Math.signum(turnSpeed);
+
+                //Normalizing to turn into valid vector(Good practice)
+                goalN.normalize();
+
+                //Rotating goal vector to account for for robot rotation
+                Vector2 nRP = MyMath.rotatePoint(new Vector2(0,0),goalN,-rPos.r);
+                goalN.x = nRP.x;
+                goalN.y = nRP.y;
+
                 //Calculates speed based on dist
-                double speed = Math.min(((1.3/(2*Math.pow((Math.max(distO-dist,0)/(distO+0.001))+0.001,4)+1))-0.3)*Math.signum((dist/(distO+0.001)+0.001)),1);//(0.5-(distT.getLength()/dist)*0.5)+0.5;
+                //double speed = Math.min(((1.3/(2*Math.pow((Math.max(Math.signum(distO)*4-dist,0)/(Math.signum(distO)*4+0.001))+0.001,4)+1))-0.3)*Math.signum((dist/(Math.signum(distO)*4+0.001)+0.001)),1);//(0.5-(distT.getLength()/dist)*0.5)+0.5;
                 //Creates multipliers to Maximize motor power
-                double turnMultiplierUnlimited = abs(goalN.x + goalN.y);
+                double turnMultiplierUnlimited = abs(goalN.x + goalN.y+turnSpeed);
                 double turnMultiplier = min(turnMultiplierUnlimited, 1) / turnMultiplierUnlimited;
-                lf.setPower(speed*turnMultiplier*(goalN.x-goalN.y));
-                rf.setPower(speed*turnMultiplier*(goalN.x+goalN.y));
-                lb.setPower(speed*turnMultiplier*(goalN.x+goalN.y));
-                rb.setPower(speed*turnMultiplier*(goalN.x-goalN.y));
+                //Sets the motor powers
+                lf.setPower(speed*turnMultiplier*(goalN.x-goalN.y+turnSpeed));
+                rf.setPower(speed*turnMultiplier*(goalN.x+goalN.y-turnSpeed));
+                lb.setPower(speed*turnMultiplier*(goalN.x+goalN.y+turnSpeed));
+                rb.setPower(speed*turnMultiplier*(goalN.x-goalN.y-turnSpeed));
                 return 0;
             }
         },50);
         fInterval.start();
+        return fInterval;
     }
 }

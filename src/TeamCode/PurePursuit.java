@@ -36,13 +36,17 @@ public class PurePursuit {
 
         //Finding rR intersection(Check desmos)
         double rRx = (r*r)/(2*d);
-        double rRy = Math.sin(Math.acos(r/(2*d)))*r;
+        double rRy = -Math.sin(Math.acos(r/(2*d)))*r;
         Vector2 rR = new Vector2(rRx,rRy);
+        console.log(rPos.x);
+        console.log(rPos.y);
+        //console.log(rR.x);
+        //console.log(rR.y);
+        //console.log(rPos.x);
+        //console.log(rPos.y);
+        rR = MyMath.rotatePoint(rPos.getV2(),rR,angle);
         rR.x += rPos.x;
         rR.y += rPos.y;
-        console.log(rR.x);
-        console.log(rR.y);
-        rR = MyMath.rotatePoint(rPos.getV2(),rR,angle);
 
 
         return rR;
@@ -75,17 +79,19 @@ public class PurePursuit {
             double dist = goalN.getLength();
 
 
-            if(dist<slop)
+            if(true)
             {
                 //Turns off motors and stops interval when target reached;
                 //Normalizing to turn into valid vector(Good practice)
                 goalN.normalize();
+                //console.log(rPos.x);
+                //console.log(rPos.y);
 
                 //Rotating goal vector to account for for robot rotation
                 Vector2 nRP = MyMath.rotatePoint(new Vector2(0,0),goalN,-rPos.r);
-                goalN.x = nRP.x;
-                goalN.y = nRP.y;
 
+                goalN.y = nRP.y;
+                //goalN.y = 0;
                 //Calculates speed based on dist
                 //double speed = Math.min(((1.3/(2*Math.pow((Math.max(Math.signum(distO)*4-dist,0)/(Math.signum(distO)*4+0.001))+0.001,4)+1))-0.3)*Math.signum((dist/(Math.signum(distO)*4+0.001)+0.001)),1);//(0.5-(distT.getLength()/dist)*0.5)+0.5;
                 //Creates multipliers to Maximize motor power

@@ -18,4 +18,8 @@ public class Vector2 {
     {
         return(Math.hypot(x,y));
     }
+    public Vector2 clone()
+    {
+        return new Vector2(x,y);
+    }
 }

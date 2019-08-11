@@ -20,4 +20,8 @@ public class Vector3 {
     {
         return(Math.hypot(x,y));
     }
+    public Vector2 getV2()
+    {
+        return new Vector2(x,y);
+    }
 }

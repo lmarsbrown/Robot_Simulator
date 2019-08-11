@@ -39,19 +39,19 @@ public class Interface {
         //Sets motor powers
         switch (motor.motor) {
             case ("front_left"): {
-                Main.robot.motorPowerFR = power;
+                Main.robot.motorPowerFR = Math.max(Math.min(power,1),-1);
                 break;
             }
             case ("back_left"): {
-                Main.robot.motorPowerBR = power;
+                Main.robot.motorPowerBR = Math.max(Math.min(power,1),-1);
                 break;
             }
             case ("front_right"): {
-                Main.robot.motorPowerFL = power;
+                Main.robot.motorPowerFL = Math.max(Math.min(power,1),-1);
                 break;
             }
             case ("back_right"): {
-                Main.robot.motorPowerBL = power;
+                Main.robot.motorPowerBL = Math.max(Math.min(power,1),-1);
                 break;
             }
         }

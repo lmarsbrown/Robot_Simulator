@@ -29,7 +29,7 @@ public class MainOpMode extends OpMode{
         AtomicReference<Interval> go = new AtomicReference<Interval>();
         go.set(new Interval((Object)->{return 0;},50));
         Interval pursuit = new Interval((Object)->{
-            Vector2 pur = PurePursuit.getPursuit(new Vector2(0,1000),new Vector2(1000,1000),1000,100);
+            Vector2 pur = PurePursuit.getPursuit(new Vector2(0,1000),new Vector2(1000,1000),1000,1000);
             go.get().clear();
             go.set(PurePursuit.goTo(pur, 1, 5, lf, rf, lb, rb));
             return 0;

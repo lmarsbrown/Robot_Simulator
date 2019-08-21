@@ -21,9 +21,10 @@ public class PurePursuit {
 
         //Rotating line to be parallel to robot
         Vector2 rP2 = p2.clone();
-        rP2 = MyMath.rotatePoint(rPos.getV2(),p2,-angle);
+        rP2.x -= rPos.x;
+        rP2.y -= rPos.y;
+        rP2 = MyMath.rotatePoint(new Vector2(0,0),rP2,-angle);
         double p = rP2.x;
-        p -= rPos.x;
 
         /* Pure pursuit math. Demo can be found at https://www.desmos.com/calculator/qfzxv3mvmo */
 
@@ -37,20 +38,21 @@ public class PurePursuit {
         //Finding rR intersection(Check desmos)
         double rRx = ((r*r)/(2*d));
         double rRy = Math.sin(Math.acos(r/(2*d)))*r;
+
         Vector2 rR = new Vector2(rRx,rRy);
         //console.log(rR.x);
         //console.log(rR.y);
         //console.log(rPos.x);
         //console.log(rPos.y);
-        rR = MyMath.rotatePoint(rPos.getV2(),rR,angle);
-
-        console.log(p1.x);
-        console.log(p1.y);
+        rR = MyMath.rotatePoint(new Vector2(0,0),rR,angle);
 
         //rR.x = Math.abs(rR.x);
-        rR.y*=-1;
+        rR.x*=-1;
         rR.x += rPos.x;
         rR.y += rPos.y;
+
+        console.log(rPos.x);
+        console.log(rPos.y);
 
         return rR;
     }

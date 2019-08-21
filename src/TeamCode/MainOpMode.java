@@ -33,7 +33,7 @@ public class MainOpMode extends OpMode{
             go.get().clear();
             go.set(PurePursuit.goTo(pur, 1, 5, lf, rf, lb, rb));
             return 0;
-        },10);
+        },10);//commit
         pursuit.start();
     }
 }

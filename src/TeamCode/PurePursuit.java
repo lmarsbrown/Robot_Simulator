@@ -5,8 +5,6 @@ import Simulator.Interface.Interface;
 import Simulator.Utils.*;
 
 import static Simulator.Interface.Interface.getRobotPos;
-import static java.lang.Math.abs;
-import static java.lang.Math.min;
 
 
 @Deprecated
@@ -27,7 +25,6 @@ public class PurePursuit {
         Vector2 tP2 = new Vector2(p2.x-p1.x,p2.y-p1.y);
         double lAngle = Math.atan2(tP2.y,tP2.x);
         double angle = (lAngle+Math.PI);
-        console.log(angle);
 
         //Rotating line to be parallel to robot
         Vector2 rP2 = p2.clone();
@@ -42,7 +39,7 @@ public class PurePursuit {
         rP1 = MyMath.rotatePoint(new Vector2(0,0),rP1,angle);
 
         double p = rP2.x;
-        console.log(p);
+        console.log(lAngle);
 
         /* Pure pursuit math. Demo can be found at https://www.desmos.com/calculator/qfzxv3mvmo */
 
@@ -116,8 +113,8 @@ public class PurePursuit {
                 //Calculates speed based on dist
                 //double speed = Math.min(((1.3/(2*Math.pow((Math.max(Math.signum(distO)*4-dist,0)/(Math.signum(distO)*4+0.001))+0.001,4)+1))-0.3)*Math.signum((dist/(Math.signum(distO)*4+0.001)+0.001)),1);//(0.5-(distT.getLength()/dist)*0.5)+0.5;
                 //Creates multipliers to Maximize motor power
-                double turnMultiplierUnlimited = abs(goalN.x + goalN.y);
-                double turnMultiplier = min(turnMultiplierUnlimited, 1) / turnMultiplierUnlimited;
+                double turnMultiplierUnlimited = Math.abs(goalN.x + goalN.y);
+                double turnMultiplier = Math.min(turnMultiplierUnlimited, 1) / turnMultiplierUnlimited;
                 //Sets the motor powers
                 lf.setPower(speed*turnMultiplier*(goalN.x-goalN.y));
                 rf.setPower(speed*turnMultiplier*(goalN.x+goalN.y));
@@ -147,8 +144,8 @@ public class PurePursuit {
                 //Calculates speed based on dist
                 //double speed = Math.min(((1.3/(2*Math.pow((Math.max(Math.signum(distO)*4-dist,0)/(Math.signum(distO)*4+0.001))+0.001,4)+1))-0.3)*Math.signum((dist/(Math.signum(distO)*4+0.001)+0.001)),1);//(0.5-(distT.getLength()/dist)*0.5)+0.5;
                 //Creates multipliers to Maximize motor power
-                double turnMultiplierUnlimited = abs(goalN.x + goalN.y+turnSpeed);
-                double turnMultiplier = min(turnMultiplierUnlimited, 1) / turnMultiplierUnlimited;
+                double turnMultiplierUnlimited = Math.abs(goalN.x + goalN.y+turnSpeed);
+                double turnMultiplier = Math.min(turnMultiplierUnlimited, 1) / turnMultiplierUnlimited;
                 //Sets the motor powers
                 lf.setPower(speed*turnMultiplier*(goalN.x-goalN.y+turnSpeed));
                 rf.setPower(speed*turnMultiplier*(goalN.x+goalN.y-turnSpeed));

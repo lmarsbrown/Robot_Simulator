@@ -25,7 +25,7 @@ public class Rowboat {
         this.lf = lf;
         this.rf = rf;
         this.lb = lb;
-        this.lb = lb;
+        this.rb = rb;
         this.lookAhead = lookAhead;
     }
 
@@ -53,9 +53,11 @@ public class Rowboat {
             }
             if(latestPursuitVector == null)
             {
-
+                console.log(Interface.getRobotPos().getV2().x);
+                console.log(Interface.getRobotPos().getV2().y);
                 latestPursuitVector = getPursuit(Interface.getRobotPos().getV2(),points.get(lastGoal),lookAhead);
             }
+
             setVec(latestPursuitVector,0.7);
 
             return 0;
@@ -85,7 +87,7 @@ public class Rowboat {
         //Calculating angle of line
         Vector2 tP2 = new Vector2(p2.x - p1.x, p2.y - p1.y);
         double lAngle = Math.atan2(tP2.y, tP2.x);
-        double angle = (lAngle + Math.PI);
+        double angle = (lAngle + 0.5*Math.PI);
 
         //Rotating line to be parallel to robot
         Vector2 rP2 = p2.clone();
@@ -94,7 +96,6 @@ public class Rowboat {
         rP2.y -= rPos.y;
         rP1.x -= rPos.x;
         rP1.y -= rPos.y;
-
 
         rP2 = MyMath.rotatePoint(new Vector2(0, 0), rP2, angle);
         rP1 = MyMath.rotatePoint(new Vector2(0, 0), rP1, angle);

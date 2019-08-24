@@ -90,19 +90,19 @@ public class Main extends Canvas{
         //TEMP POINT DRAWING
         g2d.setColor(Color.BLUE);
         g2d.setStroke(new BasicStroke(10));
-        g2d.drawArc(27,27,15,15,0,360);
+        g2d.drawArc(109,109,15,15,0,360);
 
         g2d.setColor(Color.BLUE);
         g2d.setStroke(new BasicStroke(10));
-        g2d.drawArc(6*27,27,15,15,0,360);
+        g2d.drawArc(6*109,109,15,15,0,360);
 
         g2d.setColor(Color.BLUE);
         g2d.setStroke(new BasicStroke(10));
-        g2d.drawArc(27,27*6,15,15,0,360);
+        g2d.drawArc(109,109*6,15,15,0,360);
 
         g2d.setColor(Color.BLUE);
         g2d.setStroke(new BasicStroke(10));
-        g2d.drawArc(12*27,27*8,15,15,0,360);
+        g2d.drawArc(2*109,109*8,15,15,0,360);
 
         //Calculating the distance from the top left corner to the center of the robot
         double centDist = Math.sqrt(2*Math.pow(imgSize,2))*0.5;

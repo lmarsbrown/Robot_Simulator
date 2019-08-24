@@ -19,15 +19,15 @@ public class MainOpMode extends OpMode{
     @Override
     public void init()
     {
-        lf = hardwareMap.get(DcMotor.class,"fr ont_left");
+        lf = hardwareMap.get(DcMotor.class,"front_left");
         rf = hardwareMap.get(DcMotor.class,"front_right");
         lb = hardwareMap.get(DcMotor.class,"back_left");
         rb = hardwareMap.get(DcMotor.class,"back_right");
-        rowboat = new Rowboat(lf, rf, lb, rb, 500);
-        rowboat.addPoint(100,100);
-        rowboat.addPoint(600,100);
-        rowboat.addPoint(100,600);
-        rowboat.addPoint(1200,800);
+        rowboat = new Rowboat(lf, rf, lb, rb, 1000);
+        rowboat.addPoint(400,400);
+        rowboat.addPoint(2400,400);
+        rowboat.addPoint(400,2400);
+        rowboat.addPoint(800,3200);
         rowPath = rowboat.run();
 
         console.log("init");

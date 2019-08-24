@@ -87,10 +87,27 @@ public class Main extends Canvas{
         double yScale = (canvasSize*0.125)/robotImg.getHeight();
         AffineTransform trans = new AffineTransform();
         double imgSize = (canvasSize*0.125);
+        //TEMP POINT DRAWING
+        g2d.setColor(Color.BLUE);
+        g2d.setStroke(new BasicStroke(10));
+        g2d.drawArc(27,27,15,15,0,360);
 
+        g2d.setColor(Color.BLUE);
+        g2d.setStroke(new BasicStroke(10));
+        g2d.drawArc(6*27,27,15,15,0,360);
+
+        g2d.setColor(Color.BLUE);
+        g2d.setStroke(new BasicStroke(10));
+        g2d.drawArc(27,27*6,15,15,0,360);
+
+        g2d.setColor(Color.BLUE);
+        g2d.setStroke(new BasicStroke(10));
+        g2d.drawArc(12*27,27*8,15,15,0,360);
 
         //Calculating the distance from the top left corner to the center of the robot
         double centDist = Math.sqrt(2*Math.pow(imgSize,2))*0.5;
+
+        //
 
 
         //Rotating and drawing the robot
@@ -99,6 +116,8 @@ public class Main extends Canvas{
         trans.rotate(rote);
 
         g2d.drawImage(robotImg,trans,null);
+
+
 
         i++;
     }

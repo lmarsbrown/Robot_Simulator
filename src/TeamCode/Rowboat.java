@@ -29,9 +29,9 @@ public class Rowboat {
         this.lookAhead = lookAhead;
     }
 
-    public void addPoint(Vector2 point)
+    public void addPoint(double x, double y)
     {
-        points.add(point);
+        points.add(new Vector2(x,y));
     }
     public void removePoint(int index)
     {
@@ -46,13 +46,14 @@ public class Rowboat {
             for(int i = 1; i < points.size();i++)
             {
                 Vector2 pursuitVector = getPursuit(points.get(i-1),points.get(i),lookAhead);
-                if(pursuitVector.x != MyMath.NaN && pursuitVector.y != MyMath.NaN)
+                if(!Double.isNaN(pursuitVector.x) && !Double.isNaN(pursuitVector.y))
                 {
                     latestPursuitVector = pursuitVector;
                 }
             }
             if(latestPursuitVector == null)
             {
+
                 latestPursuitVector = getPursuit(Interface.getRobotPos().getV2(),points.get(lastGoal),lookAhead);
             }
             setVec(latestPursuitVector,0.7);
@@ -85,7 +86,6 @@ public class Rowboat {
         Vector2 tP2 = new Vector2(p2.x - p1.x, p2.y - p1.y);
         double lAngle = Math.atan2(tP2.y, tP2.x);
         double angle = (lAngle + Math.PI);
-        console.log(angle);
 
         //Rotating line to be parallel to robot
         Vector2 rP2 = p2.clone();
@@ -100,13 +100,11 @@ public class Rowboat {
         rP1 = MyMath.rotatePoint(new Vector2(0, 0), rP1, angle);
 
         double p = rP2.x;
-        console.log(p);
 
         /* Pure pursuit math. Demo can be found at https://www.desmos.com/calculator/qfzxv3mvmo */
 
         //Finding goal point
         Vector2 rR = new Vector2(p, Math.sqrt((lookAhead * lookAhead) - (p * p)));
-
 
 
         rR.y *= Math.signum(rP2.y - rP1.y);

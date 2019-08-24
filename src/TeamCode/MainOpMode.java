@@ -26,10 +26,10 @@ public class MainOpMode extends OpMode{
     public void start()
     {
         //PurePursuit.goTo(new Vector2(3658,3658),1,5,lf,rf,lb,rb);
-        AtomicReference<Interval> go = new AtomicReference<Interval>();
+        AtomicReference<Interval> go = new AtomicReference<>();
         go.set(new Interval((Object)->{return 0;},50));
         Interval pursuit = new Interval((Object)->{
-            Vector2 pur = PurePursuit.getPursuit(new Vector2(0,1000),new Vector2(1000,1000),1000,1000);
+            Vector2 pur = PurePursuit.getPursuit(new Vector2(0,0),new Vector2(4000,4000),1000,1000);
             go.get().clear();
             go.set(PurePursuit.goTo(pur, 1, 5, lf, rf, lb, rb));
             return 0;

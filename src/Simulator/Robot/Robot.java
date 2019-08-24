@@ -9,7 +9,7 @@ public class Robot{
     public double r  = 0;
     public int fSize = 3658;
     public double x  = fSize*0;
-    public double y  = 100;
+    public double y  = 900;
     public double motorPowerFL = 0;
     public double motorPowerFR = 0;
     public double motorPowerBL = 0;

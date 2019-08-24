@@ -8,23 +8,41 @@ import static Simulator.Interface.Interface.getRobotPos;
 import static java.lang.Math.abs;
 import static java.lang.Math.min;
 
+
+@Deprecated
 public class PurePursuit {
 
     public static Vector2 getPursuit(Vector2 p1, Vector2 p2,double lookAhead, double r)
     {
-        //Calculating angle of line
-        Vector2 tP2 = new Vector2(p2.x-p1.y,p2.y-p1.y);
-        double angle = (Math.PI*0.5)-Math.atan2(tP2.x,tP2.y);
-
         //Getting robot pos
         Vector3 rPos = Interface.getRobotPos();
 
+        //Checking to see if line is within reach
+        if(Math.hypot(p2.x-rPos.x,p2.y-rPos.y)<lookAhead)
+        {
+            return new Vector2(MyMath.NaN,MyMath.NaN);
+        }
+
+        //Calculating angle of line
+        Vector2 tP2 = new Vector2(p2.x-p1.x,p2.y-p1.y);
+        double lAngle = Math.atan2(tP2.y,tP2.x);
+        double angle = (lAngle+Math.PI);
+        console.log(angle);
+
         //Rotating line to be parallel to robot
         Vector2 rP2 = p2.clone();
+        Vector2 rP1 = p1.clone();
         rP2.x -= rPos.x;
         rP2.y -= rPos.y;
-        rP2 = MyMath.rotatePoint(new Vector2(0,0),rP2,-angle);
+        rP1.x -= rPos.x;
+        rP1.y -= rPos.y;
+
+
+        rP2 = MyMath.rotatePoint(new Vector2(0,0),rP2,angle);
+        rP1 = MyMath.rotatePoint(new Vector2(0,0),rP1,angle);
+
         double p = rP2.x;
+        console.log(p);
 
         /* Pure pursuit math. Demo can be found at https://www.desmos.com/calculator/qfzxv3mvmo */
 
@@ -44,15 +62,15 @@ public class PurePursuit {
         //console.log(rR.y);
         //console.log(rPos.x);
         //console.log(rPos.y);
-        rR = MyMath.rotatePoint(new Vector2(0,0),rR,angle);
+        rR.y*=Math.signum(rP2.y-rP1.y);
+
+        rR = MyMath.rotatePoint(new Vector2(0,0),rR,-angle);
 
         //rR.x = Math.abs(rR.x);
-        rR.x*=-1;
+
         rR.x += rPos.x;
         rR.y += rPos.y;
 
-        console.log(rPos.x);
-        console.log(rPos.y);
 
         return rR;
     }
@@ -89,8 +107,6 @@ public class PurePursuit {
                 //Turns off motors and stops interval when target reached;
                 //Normalizing to turn into valid vector(Good practice)
                 goalN.normalize();
-                //console.log(rPos.x);
-                //console.log(rPos.y);
 
                 //Rotating goal vector to account for for robot rotation
                 Vector2 nRP = MyMath.rotatePoint(new Vector2(0,0),goalN,-rPos.r);

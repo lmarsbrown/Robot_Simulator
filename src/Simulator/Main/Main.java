@@ -19,7 +19,7 @@ public class Main extends Canvas{
     int i = 0;
     public static JFrame frame;
 
-    static int canvasSize = 800;
+    static int canvasSize = 1000;
     //Creates BufferedImage object
     BufferedImage bf = new BufferedImage(canvasSize,canvasSize,BufferedImage.TYPE_INT_RGB);
     static BufferedImage robotImg;

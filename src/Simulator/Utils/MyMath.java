@@ -1,6 +1,7 @@
 package Simulator.Utils;
 
 public class MyMath {
+    public static float NaN = 0.0f/0.0f;
     public static Vector2 rotatePoint(Vector2 pivot,Vector2 point,double amount)
     {
         //Creates translated and normalized point

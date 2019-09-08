@@ -1,11 +1,9 @@
 package TeamCode;
-import Simulator.Interface.*;
-import Simulator.Utils.*;
-
-import java.util.concurrent.atomic.AtomicReference;
-
-import static java.lang.Math.abs;
-import static java.lang.Math.min;
+import Simulator.Interface.DcMotor;
+import Simulator.Interface.OpMode;
+import Simulator.Interface.hardwareMap;
+import Simulator.Utils.Interval;
+import Simulator.Utils.console;
 
 
 public class MainOpMode extends OpMode{
@@ -23,7 +21,7 @@ public class MainOpMode extends OpMode{
         rf = hardwareMap.get(DcMotor.class,"front_right");
         lb = hardwareMap.get(DcMotor.class,"back_left");
         rb = hardwareMap.get(DcMotor.class,"back_right");
-        rowboat = new Rowboat(lf, rf, lb, rb, 1000);
+        rowboat = new Rowboat(lf, rf, lb, rb, 300,0.75);
         rowboat.addPoint(400,400);
         rowboat.addPoint(2400,400);
         rowboat.addPoint(400,2400);

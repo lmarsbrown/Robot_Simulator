@@ -6,11 +6,17 @@ public class MyMath {
     {
         //Creates translated and normalized point
         Vector2 tPoint = new Vector2(point.x-pivot.x,point.y-pivot.y);
-        double len = tPoint.getLength();
-        tPoint.normalize();
+        if(tPoint.x != 0&&tPoint.y!=0) {
+            double len = tPoint.getLength();
+            tPoint.normalize();
 
-        //rotates tPoint and scales it back up
-        Vector2 output = new Vector2((tPoint.x*Math.cos(amount)-tPoint.y* Math.sin(amount))*len,(tPoint.y*Math.cos(amount)+tPoint.x* Math.sin(amount))*len);
-        return output;
+            //rotates tPoint and scales it back up
+            Vector2 output = new Vector2((tPoint.x * Math.cos(amount) - tPoint.y * Math.sin(amount)) * len, (tPoint.y * Math.cos(amount) + tPoint.x * Math.sin(amount)) * len);
+            return output;
+        }
+        else
+        {
+            return point;
+        }
     }
 }

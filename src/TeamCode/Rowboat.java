@@ -10,6 +10,8 @@ import java.util.List;
 import static java.lang.Math.abs;
 import static java.lang.Math.min;
 
+
+@Deprecated
 public class Rowboat {
     //Setting up motor and misc variables
     List<Vector2> points  = new ArrayList<>();

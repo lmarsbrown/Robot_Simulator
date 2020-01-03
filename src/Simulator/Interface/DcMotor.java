@@ -1,5 +1,7 @@
 package Simulator.Interface;
 
+import Simulator.Utils.console;
+
 public class DcMotor {
     protected String motor = "";
     protected double mPower = 0;

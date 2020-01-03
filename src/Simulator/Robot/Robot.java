@@ -2,11 +2,12 @@ package Simulator.Robot;
 
 import Simulator.Utils.Interval;
 import Simulator.Utils.Vector2;
+import Simulator.Utils.console;
 
 public class Robot
 {
     //Initializing all of the robot variables
-    public double r  = 0;
+    public double r  = -1.57;
     public int fSize = 3658;
     public double x  = fSize*0.25;
     public double y  = fSize*0.25;

@@ -32,15 +32,18 @@ public class MainOpMode extends OpMode{
     @Override
     public void start()
     {
-        control.gotoPoint(new Transform(-1500,-1500,0),true,0.25,0.75,20,(Object a)->{
+        /*control.gotoPoint(new Transform(-1500,-1500,0),true,0.25,0.75,20,(Object a)->{
             return 0;
         });
-        rowboat.relocalize();
+        rowboat.relocalize();*/
     }
 
     @Override
     public void loop() {
         rowboat.relocalize();
+        Transform dir = new Transform(0,1,0);
+        dir.rotate(new Transform(0,0,0),-rowboat.pos.r);
+        control.setVec(dir,0.5);
     }
 
 }

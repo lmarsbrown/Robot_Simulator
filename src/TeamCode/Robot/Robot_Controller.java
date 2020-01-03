@@ -42,8 +42,8 @@ public class Robot_Controller {
 
             lfm.setPower((dir.y * sideMultiplier - dir.x * sideMultiplier + dir.r * sideMultiplier) * power);
             rfm.setPower((dir.y * sideMultiplier + dir.x * sideMultiplier - dir.r * sideMultiplier) * power);
-            lbm.setPower((dir.y * sideMultiplier + dir.x * sideMultiplier + dir.r * sideMultiplier) * power);
-            rbm.setPower((dir.y * sideMultiplier - dir.x * sideMultiplier - dir.r * sideMultiplier) * power);
+            lbm.setPower((dir.y * sideMultiplier - dir.x * sideMultiplier + dir.r * sideMultiplier) * power);
+            rbm.setPower((dir.y * sideMultiplier + dir.x * sideMultiplier - dir.r * sideMultiplier) * power);
         }
         else
         {

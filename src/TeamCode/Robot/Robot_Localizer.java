@@ -19,6 +19,6 @@ public class Robot_Localizer {
         if(onLocalize != null){onLocalize.call(0);}
         pos.x = -posV.y;
         pos.y = -posV.x;
-        pos.r = posV.r;
+        pos.r = posV.r+1.57;
     }
 }
